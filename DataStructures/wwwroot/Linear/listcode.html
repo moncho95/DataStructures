@@ -1,0 +1,67 @@
+﻿<html>
+<head>
+    <style>
+        .code {
+            color: blue;
+            font-size: 20px;
+            text-decoration: wavy;
+        }
+    </style>
+</head>
+<body>
+    <p class="code">
+        public class List &lt;T&gt; : IList &lt;T&gt;<br>
+        {<br>
+        &emsp;private const int DEFAULT_CAPACITY = 4;<br>
+        &emsp;private T[] elements;<br>
+        &emsp;private int size;<br>
+
+        &emsp;public List()<br>
+        &emsp;{<br>
+        &emsp;&emsp;this.elements = new T[DEFAULT_CAPACITY];<br>
+        &emsp;}<br>
+        }<br>
+        //Adding<br>
+        public void Add(T item)<br>
+        {
+        &emsp;if(this.size == this.elements.Length)<br>
+        &emsp;{<br>
+        &emsp;&emsp;this.elements = this.Grow();<br>
+        &emsp;}<br>
+        &emsp;this.elements[this.size] = item;<br>
+        &emsp;this.size++;<br>
+        }
+        //Indexer<br>
+        public T this[int index] {<br>
+        &emsp;get<br>
+
+        &emsp;{<br>
+        &emsp;&emsp;this.ValidateIndex(index);<br>
+        &emsp;&emsp;return this.elements[index];<br>
+
+        &emsp;}<br>
+        &emsp;set<br>
+
+        &emsp;{<br>
+        &emsp;&emsp;this.ValidateIndex(index);<br>
+        &emsp;&emsp;this.elements[index] = value;<br>
+
+        &emsp;}<br>
+        }
+        //Remove<br>
+        public void RemoveAt(int index)<br>
+        {<br>
+        &emsp; this.ValidateIndex(index);<br>
+        &emsp; this.Shift(index);<br>
+        &emsp; this.size--;<br>
+        }<br>
+        //Helper methods<br>
+        private T[] Grow()<br>
+        {<br>
+        &emsp;T[] newArray = new T[this.elements.Length * 2];<br>
+        &emsp;Array.Copy(this.elements, newArray, this.elements.length);<br>
+        &emsp;return newArray;<br>
+        }<br>
+    </p>
+</body>
+</html>

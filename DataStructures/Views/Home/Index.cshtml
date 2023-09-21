@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<html>
+<head>
+	<title>Home Page</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<style>
+		body {
+			background-image: url('img/home-page.jpg');
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: 100% 100%;
+		}
+		h1{
+			display: flex;
+			justify-content:center;
+			background-color:white;
+			opacity:0.9;
+			font-size: 100px;
+			text-decoration:solid;
+		}
+		.list{
+			
+			background-color:white;
+			opacity:0.8;
+			font-size: 60px;
+		}
+		.intro{
+			display:flex;
+			flex-direction:column;
+		}
+		.info{
+			display:flex;
+			justify-content: space-between;
+			background-color:yellow;
+			opacity:0.8;
+			font-size: 40px;
+		}
+	</style>
+</head>
+<body>
+<div class="text-center">
+	<h1 >Welcome to My Data Structures with C# Blog</h1>
+	<br />
+	<div>
+		<ul class="list">
+			<li><a asp-area="" asp-controller="Linear" asp-action="LinearType">Linear Data Structures</a></li>
+			
+			<li><a asp-area="" asp-controller="NonLinear" asp-action="NonLinearType">Non-linear Data Structures</a></li>
+			
+			<li><a asp-area="" asp-controller="Advanced" asp-action="AdvancedType">Advanced</a></li>
+			
+		</ul>
+	</div>
+	<div class="info">
+	<div class = "intro">
+		<div>
+	    <h3>What is Data Structere</h3>
+		<p>A data structure is a storage that is used to store and organize data. It is a way 
+			of arranging data on a computer so that it can be accessed and updated efficiently.</p>
+			<hr/>
+</div>
+<div>
+	<h3>What are the types of Data Structures?</h3>
+	<p> Data structure in which data elements are arranged sequentially or linearly, where each element is attached 
+		to its previous and next adjacent elements, is called a linear data structure.Examples of this data structure are queue, stack, etc.<br>
+		
+		Data structures where data elements are not placed sequentially or linearly are called non-linear data structures. In a 
+		non-linear data structure, we can’t traverse all the elements in a single run only. 
+	Examples of non-linear data structures are trees and graphs.
+	</p>
+	<p>
+
+	</p>
+</div>
+	</div>
+	</div>
+</div>
+</body>
+</html>

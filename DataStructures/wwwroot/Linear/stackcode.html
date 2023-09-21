@@ -1,0 +1,115 @@
+﻿<html>
+<head>
+    <style>
+        .code {
+            color: blue;
+            font-size: 20px;
+            text-decoration: wavy;
+        }
+    </style>
+</head>
+<body>
+
+
+    <p class="code">
+        public class Stack &lt;T&gt;<br />
+        : IAbstractStack &lt;T&gt;
+        <br />
+        {<br />
+        &emsp;private class Node<br />
+        &emsp;{<br />
+        &emsp;&emsp;public T Element { get; set; }<br />
+        &emsp;&emsp;public Node Next { get; set; }<br />
+        <br />
+        &emsp;public Node(T element, Node next)<br />
+        &emsp;{<br />
+        &emsp;&emsp;this.Element = element;<br />
+        &emsp;&emsp;this.Next = next;<br />
+        &emsp;}<br />
+        <br />
+        &emsp;public Node(T element)<br />
+        &emsp;{<br />
+        &emsp;&emsp;this.Element = element;<br />
+        &emsp;}<br />
+        }<br />
+        <br />
+        private Node top;<br />
+        <br />
+        public Stack()<br />
+        {<br />
+        &emsp;this.top = null;<br />
+        &emsp;this.Count = 0;<br />
+        }<br />
+        <br />
+        public int Count { get; private set; }<br />
+        <br />
+        public bool Contains(T item)<br />
+        &emsp;{<br />
+        &emsp;&emsp;Node current = this.top;<br />
+        <br />
+        &emsp;&emsp;while (current != null)<br />
+        &emsp;&emsp;{<br />
+        &emsp;&emsp;&emsp;if (current.Element.Equals(item))<br />
+        &emsp;&emsp;&emsp;{<br />
+        &emsp;&emsp;&emsp;&emsp;return true;<br />
+        &emsp;&emsp;&emsp;}<br />
+        <br />
+        &emsp;&emsp;&emsp;current = current.Next;<br />
+        &emsp;&emsp;}<br />
+        <br />
+        &emsp;return false;<br />
+        &emsp; }<br />
+        <br />
+        public T Peek()<br />
+        {<br />
+        &emsp; this.ValidateNotEmpty();<br />
+        <br />
+        &emsp;return this.top.Element;<br />
+        }<br />
+        <br />
+        public T Pop()<br />
+        {<br />
+        &emsp;this.ValidateNotEmpty();<br />
+        <br />
+        &emsp;T item = this.top.Element;<br />
+        &emsp;this.top = this.top.Next;<br />
+        &emsp;this.Count--;<br />
+        <br />
+        &emsp;return item;<br />
+        }<br />
+        <br />
+        public void Push(T item)<br />
+        {<br />
+        &emsp;Node newTop = new Node(item);<br />
+        &emsp;newTop.Next = this.top;<br />
+        &emsp;this.top = newTop;<br />
+        &emsp;this.Count++;<br />
+        }<br />
+        <br />
+        public IEnumerator &lt;T&gt;<br />
+        GetEnumerator()<br />
+        {<br />
+        &emsp;Node current = this.top;<br />
+        <br />
+        &emsp;while (current != null)<br />
+        &emsp;{<br />
+        &emsp;&emsp;yield return current.Element;<br />
+        &emsp;&emsp;current = current.Next;<br />
+        &emsp;}<br />
+        }<br />
+        <br />
+        IEnumerator IEnumerable.GetEnumerator()<br />
+        {<br />
+        &emsp;return this.GetEnumerator();<br />
+        }<br />
+        <br />
+        private void ValidateNotEmpty()<br />
+        {<br />
+        &emsp;if (this.top == null)<br />
+        &emsp;{<br />
+        &emsp;&emsp;throw new InvalidOperationException("Stack is empty!");<br />
+        &emsp;}<br />
+        }<br />
+    </p>
+</body>
+</html>

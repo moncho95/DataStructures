@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "Linear";
+}
+
+<html>
+    <head>
+        <style>
+            .intro{
+                display: flex;
+			justify-content:center;
+			background-color:white;
+			opacity:0.7;
+             font-size:26px;
+                
+            }
+            .img
+            {
+                width:100%;
+                height:50%;
+            }
+            .code{
+                color:blue;
+                font-size:20px;
+                text-decoration:wavy;
+            }
+            
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+  $(".listbtn").click(function(){
+    $("#div2").load("listcode.html").toggle();
+  });
+});
+$(document).ready(function(){
+  $(".stackbtn").click(function(){
+    $("#div1").load("stackcode.html").toggle();
+  });
+});
+</script>
+    </head>
+    <body>
+        <img class="img" src="~/img/dstypes.jpg">
+        <div class="intro">
+        <p><b>Linear data structure</b>: Data structure in which data elements are arranged sequentially or linearly, where each element is attached to its previous and next adjacent elements, is called a linear data structure. 
+Examples of linear data structures are array, stack, queue, linked list, etc.
+<br>
+<b>Static data structure</b>: Static data structure has a fixed memory size. It is easier to access the elements in a static data structure. 
+An example of this data structure is an array.<br>
+<b>Dynamic data structure</b>: In dynamic data structure, the size is not fixed. It can be randomly updated during the runtime which may be considered efficient concerning the memory (space) complexity of the code. 
+Examples of this data structure are queue, stack, etc.<br></p>
+</div>
+<hr/>
+<div>
+    <h2>Array</h2>
+    <p>An array is a collection of items stored at contiguous memory locations. The idea is to store multiple items of the same type together. 
+        This makes it easier to calculate the position of each element by simply adding an offset to a base value, i.e., the memory location of the first element of the array (generally denoted by the name of the array).</p>
+        <ul>
+            <li>In C#, all arrays are dynamically allocated.</li>
+            <li>Since arrays are objects in C#, we can find their length using member length. This is different from C/C++ where we find length using sizeof operator.</li>
+            <li>A C# array variable can also be declared like other variables with [] after the data type.</li>
+            <li>The variables in the array are ordered and each has an index beginning from 0.</li>
+            <li>Default values of numeric array and reference type elements are set to be respectively zero and null.</li>
+            <li>A jagged array elements are reference types and are initialized to null.</li>
+            <li>Array elements can be of any type, including an array type.</li>
+            <li>Array types are reference types which are derived from the abstract base type Array. These types implement IEnumerable and for it, they use foreach iteration on all arrays in C#.</li>
+            
+        </ul>
+        <div id="div2"><h4>Implementation of Dynamic Array - List</h4></div>
+        <button class="listbtn">Show List Implementation</button>
+           
+       
+
+</div>
+<div>
+    <h2>Stack</h2>
+    <p>Stack is the implementation of ADS LIFO<br>
+ &emsp;▪ Last In First Out<br>
+ &emsp;▪ Build by using Node class or atop an array<br></p>
+    <div id="div1"><h4>Stack Implementation</h4></div>
+
+<button class="stackbtn">Show Stack Implementation</button>
+<p> Supported operations and complexity:<br>
+&emsp;▪ Count, Push(T item), Pop(), Peek() – <em style="color:red">O(1)</em><br>
+&emsp;▪ All other operations run in linear time – <em style="color:red">O(n)</em><br></p>
+    </div>
+    </body>
+</html>
