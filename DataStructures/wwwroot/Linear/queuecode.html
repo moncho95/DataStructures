@@ -1,0 +1,134 @@
+﻿<html>
+<head>
+    <style>
+        .code {
+            color: blue;
+            font-size: 20px;
+            text-decoration: wavy;
+        }
+    </style>
+</head>
+<body>
+    <p class="code">
+        public class Queue&lt;T&gt;
+        : IAbstractQueue&lt;T&gt;<br>
+        {<br>
+        &emsp;private class Node<br>
+        &emsp;{<br>
+        &emsp;&emsp;public T Element { get; set; }<br>
+        &emsp;&emsp;public Node Next { get; set; }<br>
+        <br>
+        &emsp;public Node(T element, Node next)<br>
+        &emsp;{<br>
+        &emsp;&emsp;this.Element = element;<br>
+        &emsp;&emsp;this.Next = next;<br>
+        &emsp;}<br>
+        <br>
+        &emsp;public Node(T element)<br>
+        &emsp;{<br>
+        &emsp;&emsp;this.Element = element;<br>
+        &emsp;}<br>
+        &emsp;}<br>
+        <br>
+        private Node head;<br>
+        <br>
+        public Queue()<br>
+        {<br>
+        &emsp;this.head = null;<br>
+        &emsp;this.Count = 0;<br>
+        }<br>
+        <br>
+        public int Count { get; private set; }<br>
+        <br>
+        public bool Contains(T item)<br>
+        {<br>
+        &emsp;Node current = this.head;<br>
+        &emsp;while (current != null)<br>
+        &emsp;{<br>
+        &emsp;&emsp;if (current.Element.Equals(item))<br>
+        &emsp;&emsp;{<br>
+        &emsp;&emsp;&emsp;return true;<br>
+        &emsp;&emsp;}<br>
+        <br>
+        &emsp;current = current.Next;<br>
+        &emsp;}<br>
+        <br>
+        &emsp;return false;<br>
+        }<br>
+        <br>
+        public T Dequeue()<br>
+        {<br>
+        // 01. Get the head value (new variable)<br>
+        // 02. Set the head to be the next element<br>
+        // 03. Decrease size<br>
+        // 04. Return old head value<br>
+        <br>
+        &emsp;this.EnsureIfNotEmpty();<br>
+        &emsp;T item = this.head.Element;<br>
+        &emsp;this.head = this.head.Next;<br>
+        &emsp;this.Count--;<br>
+        <br>
+        &emsp;return item;<br>
+        }<br>
+        <br>
+        public void Enqueue(T item)<br>
+        {<br>
+        // 01. Create new head<br>
+        // 02. Iterate all to reach last<br>
+        // 03. Set next for the last to be the new head<br>
+        // 04. Increase size<br>
+        <br>
+        &emsp; Node toInsert = new Node(item);<br>
+        &emsp;Node current = this.head;<br>
+        <br>
+        &emsp; if (current is null)<br>
+        &emsp;{<br>
+        &emsp;&emsp;this.head = toInsert;<br>
+        &emsp;}<br>
+        &emsp;else<br>
+        &emsp;{<br>
+        &emsp;&emsp;while (current.Next != null)<br>
+        &emsp;&emsp;{<br>
+        &emsp;&emsp;&emsp;current = current.Next;<br>
+        &emsp;&emsp;}<br>
+        <br>
+        &emsp;current.Next = toInsert;<br>
+        &emsp;}<br>
+        this.Count++;<br>
+        }<br>
+        <br>
+        public T Peek()<br>
+        {<br>
+        &emsp;this.EnsureIfNotEmpty();<br>
+        <br>
+        &emsp;return this.head.Element;<br>
+        }<br>
+        <br>
+        public IEnumerator&lt;T&gt;
+        GetEnumerator()<br>
+        {<br>
+        &emsp;Node current = this.head;<br>
+        <br>
+        &emsp;while (current != null)<br>
+        &emsp;{<br>
+        &emsp;&emsp;yield return current.Element;<br>
+        &emsp;&emsp;current = current.Next;<br>
+        &emsp;}<br>
+        }<br>
+        <br>
+        IEnumerator IEnumerable.GetEnumerator()<br>
+        {<br>
+        &emsp;return this.GetEnumerator();<br>
+        }<br>
+        <br>
+        private void EnsureIfNotEmpty()<br>
+        {<br>
+        &emsp;if (this.Count == 0)<br>
+        &emsp;{<br>
+        &emsp;&emsp;throw new InvalidOperationException("Queue is empty!");<br>
+        &emsp;}<br>
+        }<br>
+        }<br>
+    </p>
+</body>
+</html>

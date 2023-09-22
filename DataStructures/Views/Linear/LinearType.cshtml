@@ -23,7 +23,11 @@
                 font-size:20px;
                 text-decoration:wavy;
             }
-            
+            .stack-queue{
+                display:flex;
+                flex-direction:row;
+                justify-content:space-around;
+            }
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script>
@@ -35,6 +39,16 @@
 $(document).ready(function(){
   $(".stackbtn").click(function(){
     $("#div1").load("stackcode.html").toggle();
+  });
+});
+   $(document).ready(function(){
+  $(".queuebtn").click(function(){
+    $("#div3").load("queuecode.html").toggle();
+  });
+});
+$(document).ready(function(){
+  $(".linkedlistbtn").click(function(){
+    $("#div4").load("linkedlistcode.html").toggle();
   });
 });
 </script>
@@ -72,6 +86,7 @@ Examples of this data structure are queue, stack, etc.<br></p>
        
 
 </div>
+<hr/>
 <div>
     <h2>Stack</h2>
     <p>Stack is the implementation of ADS LIFO<br>
@@ -84,5 +99,68 @@ Examples of this data structure are queue, stack, etc.<br></p>
 &emsp;▪ Count, Push(T item), Pop(), Peek() – <em style="color:red">O(1)</em><br>
 &emsp;▪ All other operations run in linear time – <em style="color:red">O(n)</em><br></p>
     </div>
-    </body>
+    <hr/>
+    <div>
+        <h2>Queue</h2>
+        <p>▪ Queue is the implementation of ADS FIFO<br>
+▪ First In First Out<br>
+▪ Build by using Node class or atop an array<br></p>
+<div id="div3"><h4>Queue Implementation</h4></div>
+
+<button class="queuebtn">Show Queue Implementation</button>
+
+<p>Supported operations and complexity:<br>
+▪ Count, Dequeue(), Peek() – <em style="color:red">O(1)</em><br>
+▪ Enqueue(T item):<br>
+▪ If we keep the reference to the that node – <em style="color:red">O(1)</em><br>
+▪ If we have to chase pointers to that node – <em style="color:red">O(n)</em><br></p>
+    </div>
+    <hr/>
+    <div><h2>Stack and Queue</h2>
+        <h3>Real-World Applications</h3>
+        <div class="stack-queue">
+            <div>
+                <p>▪ Stack<br>
+▪ Undo operations<br>
+▪ Browser history<br>
+▪ Chess game progress<br>
+▪ Math expression evaluation<br>
+▪ Implementation of function<br>
+(method) calls<br>
+▪ Tree-like structures<br>
+traversal (DFS algorithm)<br></p>
+            </div>
+            <div>
+                <p>▪ Queue<br>
+▪ Operation system process
+scheduling<br>
+▪ Resource sharing<br>
+▪ Printer document queue<br>
+▪ Server requests queue<br>
+▪ Tree-like structures traversal
+(BFS algorithm)<br> </p>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <div>
+        <h2>SinglyLinkedList</h2>
+        <p>▪ Linear data structure where each element is a separate
+object – Node<br>
+▪ The elements are not stored at contiguous memory<br>
+▪ The entry point is commonly the head of the list<br></p>
+<div id="div4"><h4>SinglyLinkedList Implementation</h4></div>
+
+<button class="linkedlistbtn">Show LinkedList Implementation</button>    
+
+
+    <p>Supported operations and complexity:<br>
+▪ AddFirst(T item), RemoveFirst(), GetFirst(), Count – <em style="color:red">O(1)</em><br>
+
+▪ AddLast(), RemoveLast(), GetLast()<br>
+▪ Depends if we keep the reference to the last node<br>
+(DoublyLinkedList) or not can be constant –<em style="color:red">O(1)</em> or linear – <em style="color:red">O(n)</em><br>
+▪ Operations that index into the list will run in linear time <em style="color:red">O(n)</em><br></p>
+ </div>  
+ </body>
 </html>

@@ -1,0 +1,161 @@
+﻿<html>
+<head>
+    <style>
+        .code {
+            color: blue;
+            font-size: 20px;
+            text-decoration: wavy;
+        }
+    </style>
+</head>
+<body>
+    <p class="code">
+        public class SinglyLinkedList&lt;T&gt;
+        : IAbstractLinkedList&lt;T&gt;<br>
+        {<br>
+        &emsp;private class Node<br>
+        &emsp;{<br>
+        &emsp;&emsp;public T Element { get; set; }<br>
+        &emsp;&emsp;public Node Next { get; set; }<br>
+        <br>
+        &emsp;public Node(T element, Node next)<br>
+        &emsp;{<br>
+        &emsp;&emsp;this.Element = element;<br>
+        &emsp;&emsp;this.Next = next;<br>
+        &emsp;}<br>
+
+        &emsp;public Node(T element)<br>
+        &emsp;{<br>
+        &emsp;&emsp;this.Element = element;<br>
+        &emsp;}<br>
+        }<br>
+
+        private Node head;<br>
+
+        public SinglyLinkedList()<br>
+        {<br>
+        &emsp;this.head = null;<br>
+        &emsp;this.Count = 0;<br>
+        }<br>
+        <br>
+        public int Count { get; private set; }<br>
+        <br>
+        public void AddFirst(T item)<br>
+        {<br>
+        &emsp;Node toInsert = new Node(item);<br>
+        &emsp;toInsert.Next = this.head;<br>
+        &emsp;this.head = toInsert;<br>
+        &emsp;this.Count++;<br>
+        }<br>
+
+        public void AddLast(T item)<br>
+        {<br>
+        // 01. Create node<br>
+        // 02. Iterate n elements and add to the .Next for the last<br>
+        // 03. Increase Count<br>
+        &emsp;Node toInsert = new Node(item);<br>
+        &emsp;Node current = this.head;<br>
+        &emsp;if (current == null)<br>
+        &emsp;{<br>
+        &emsp;&emsp;this.head = toInsert;<br>
+        &emsp;}<br>
+        &emsp;else<br>
+        &emsp;{<br>
+        &emsp;&emsp;while (current.Next != null)<br>
+        &emsp;&emsp;{<br>
+        &emsp;&emsp;&emsp;current = current.Next;<br>
+        &emsp;&emsp;}<br>
+        <br>
+        &emsp;current.Next = toInsert;<br>
+        &emsp;}<br>
+        <br>
+        this.Count++;<br>
+        }<br>
+        <br>
+        public T GetFirst()<br>
+        {<br>
+        &emsp;this.EnsureNonEmptyList();<br>
+        <br>
+        &emsp;return this.head.Element;<br>
+        }<br>
+        <br>
+        public T GetLast()<br>
+        {<br>
+        &emsp;this.EnsureNonEmptyList();<br>
+        <br>
+        &emsp;Node current = this.head;<br>
+        &emsp;while (current.Next != null)<br>
+        &emsp;{<br>
+        &emsp;&emsp;current = current.Next;<br>
+        &emsp;}<br>
+        <br>
+        &emsp;return current.Element;<br>
+        }<br>
+        <br>
+        public T RemoveFirst()<br>
+        {<br>
+        &emsp;this.EnsureNonEmptyList();<br>
+        &emsp;Node current = this.head;<br>
+        &emsp;this.head = this.head.Next;<br>
+        &emsp;this.Count--;<br>
+        <br>
+        &emsp;return current.Element;<br>
+        }<br>
+        <br>
+        public T RemoveLast()<br>
+        {<br>
+        &emsp;this.EnsureNonEmptyList();<br>
+        &emsp;Node current = this.head;<br>
+        &emsp;Node last = null;<br>
+        // Works only for 1 element in the list<br>
+        &emsp;if (current.Next == null)<br>
+        &emsp;{<br>
+        &emsp;&emsp;last = this.head;<br>
+        &emsp;&emsp;this.head = null;<br>
+        &emsp;}<br>
+        &emsp;else<br>
+        &emsp;{<br>
+        &emsp;&emsp;while (current != null)<br>
+        &emsp;&emsp;{<br>
+        // Works if there are more than 1 elements in the list<br>
+        &emsp;&emsp;&emsp;if (current.Next.Next == null)<br>
+        &emsp;&emsp;&emsp;{<br>
+        &emsp;&emsp;&emsp;&emsp; last = current.Next;<br>
+        &emsp;&emsp;&emsp;&emsp;current.Next = null;<br>
+        &emsp;&emsp;&emsp;&emsp;break;<br>
+        &emsp;&emsp;&emsp;}<br>
+        <br>
+        &emsp;&emsp;current = current.Next;<br>
+        &emsp;&emsp;}<br>
+        &emsp;}<br>
+        <br>
+        this.Count--;<br>
+        return last.Element;<br>
+        }<br>
+        <br>
+        public IEnumerator&lt;T&gt;<br>
+        GetEnumerator()<br>
+        {<br>
+        &emsp;Node current = this.head;<br>
+        <br>
+        &emsp;while (current != null)<br>
+        &emsp;{<br>
+        &emsp;&emsp;yield return current.Element;<br>
+        &emsp;&emsp;current = current.Next;<br>
+        &emsp;}<br>
+        }<br>
+        <br>
+        IEnumerator IEnumerable.GetEnumerator()<br>
+        => this.GetEnumerator();<br>
+        <br>
+        private void EnsureNonEmptyList()<br>
+        {<br>
+        &emsp;if (this.Count == 0)<br>
+        &emsp;{<br>
+        &emsp;&emsp;throw new InvalidOperationException("Linked List is empty!");<br>
+        &emsp;}<br>
+        }<br>
+        }<br>
+    </p>
+</body>
+</html>
